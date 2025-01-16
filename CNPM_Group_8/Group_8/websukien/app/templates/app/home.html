@@ -1,0 +1,78 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block banner_slider %}
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'app/images/banner/A1.jpg' %}" class="d-block w-100" alt="Hội thảo ICMC" height='750'>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Hội thảo ICMC</h5>
+          <p>Hội thảo về Con người, Dữ liệu và Công nghệ: Cơ hội và thách thức của Truyền thông trong thời đại của AI</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/A2.jpg' %}" class="d-block w-100" alt="Hội thảo Quản trị - Cầu nối tri thức và kinh nghiệm thực tiễn dành cho lãnh đạo tương lai" height='750'>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Hội thảo Quản trị - Cầu nối tri thức và kinh nghiệm thực tiễn dành cho lãnh đạo tương lai</h5>
+          <p>Đa dạng chủ đề, kiến thức ứng dụng thực tiễn
+            Các hội thảo bao gồm nhiều lĩnh vực như: 
+tổng quan kinh tế Việt Nam, xu hướng trí tuệ nhân tạo (AI), nghệ thuật lãnh đạo, quản trị khủng hoảng truyền thông, cùng các vấn đề cụ thể như thuế, luật lao động, và những phương pháp quản trị tiên tiến như 5S/Kaizen,… Những kiến thức thực tế và hữu ích này được trình bày bởi các chuyên gia kinh tế, lãnh đạo doanh nghiệp, và quản lý điều hành hàng đầu tại Việt Nam.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/A3.jpg' %}" class="d-block w-100" alt="SEMINAR "HÀNH TRÌNH KHỞI NGHIỆP"" height='750'>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>SEMINAR "HÀNH TRÌNH KHỞI NGHIỆP"</h5>
+          <p> Nhằm tạo cơ hội cho các bạn sinh viên nhìn nhận trước những thách thức, khó khăn có thể gặp phải trên con đường khởi nghiệp. Seminar với chủ đề chuẩn bị cho con đường khởi nghiệp đã thu hút đông đảo các bạn sinh viên khối ngành Kinh tế tham gia.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/images/banner/A4.jpg' %}" class="d-block w-100" alt="seminar khởi nghiệp “Cách đưa sản phẩm khả dụng tối thiểu (MVP) ra thị trường của các startup công nghệ”"  height='750'>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>seminar khởi nghiệp “Cách đưa sản phẩm khả dụng tối thiểu (MVP) ra thị trường của các startup công nghệ”</h5>
+          <p>Đây là một sự kiện quan trọng và đáng chú ý trong cộng đồng khởi nghiệp Việt Nam, nơi các diễn giả đã trình bày các nội dung chuyên sâu và phân tích kỹ lưỡng về cách xây dựng và phát triển sản phẩm MVP để đạt được sự thành công trong thị trường cạnh tranh hiện nay.</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endblock banner_slider %}
+
+<!-- Dải phân cách -->
+<div style="height: 10px; background-color: #4f868c; margin: 30px 0;"></div>
+
+{% block main-content %}
+<div class="row">
+    {%for SuKien in Su_Kiens%}
+    <!-- Phần tử 1 -->
+    <div class="col-lg-3">
+        {% if SuKien.image %}
+        <img class="thumbnail img-fluid" src="{{ SuKien.image.url }}" alt="{{ SuKien.ten_su_kien }}">
+        {% else %}
+        <img class="thumbnail img-fluid" src="{% static 'app/images/default.jpg' %}" alt="Hình ảnh mặc định">
+        {% endif %}
+        <div class="box-element SuKien">
+            <h6><strong>{{ SuKien.ten_su_kien }}</strong></h6>
+            <hr>
+            <button class="btn btn-outline-secondary add-btn">Đăng ký</button>
+            <a class="btn btn-outline-success" href="#">Xem chi tiết</a>
+            <h4 style="display: inline-block; float: right"><strong>{{ SuKien.gia_ve }}$</strong></h4>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br><br><br>
+{% endblock main-content %}
