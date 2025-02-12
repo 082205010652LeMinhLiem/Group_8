@@ -1,0 +1,26 @@
+/* upcoming_events.css */
+.upcoming-events {
+    padding: 30px;
+    background-color: #f8f9fa;
+}
+
+.event-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.event-date {
+    color: #007bff;
+}
+
+.event-description {
+    margin-top: 10px;
+}

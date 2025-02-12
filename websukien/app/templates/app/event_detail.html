@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block banner_slider %}
+    <div class="carousel-item active">
+        {% if su_kien.hinh_anh %}
+            <img src="{{ su_kien.hinh_anh.url }}" class="d-block w-100" alt="{{ su_kien.ten_su_kien }}" height="750">
+        {% else %}
+            <img src="{% static 'app/images/default.jpg' %}" class="d-block w-100" alt="Default Image" height="750">
+        {% endif %}
+        <div class="carousel-caption d-none d-md-block">
+            <h5>{{ su_kien.ten_su_kien }}</h5>
+            <p>{{ su_kien.mo_ta_ngan }}</p>
+        </div>
+    </div>
+{% endblock banner_slider %}
+
+<!-- Dải phân cách -->
+<div style="height: 10px; background-color: #4f868c; margin: 30px 0;"></div>
+
+{% block main-content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card event-detail-container">
+                <div class="card-body">
+                    <h4 class="card-title event-title">{{ su_kien.ten_su_kien }}</h4>
+                    <p class="card-text">{{ su_kien.mo_ta }}</p>
+
+                    <!-- Hiển thị thời gian sự kiện -->
+                    <p class="event-info"><strong>Thời gian bắt đầu:</strong> {{ su_kien.thoi_gian_bat_dau|date:"d/m/Y H:i" }}</p>
+                    <p class="event-info"><strong>Thời gian kết thúc:</strong> {{ su_kien.thoi_gian_ket_thuc|date:"d/m/Y H:i" }}</p>
+
+                    <p class="event-info"><strong>Địa điểm:</strong> {{ su_kien.dia_diem }}</p>
+                    <p class="event-info"><strong>Giá vé:</strong> {{ su_kien.gia_ve|floatformat:0 }} VND</p>
+                    <p class="event-info"><strong>Số lượng vé còn lại:</strong> {{ su_kien.so_luong_ve }}</p>
+                    <p class="event-info"><strong>Số lượng người tham gia:</strong> {{ so_luong_tham_gia }}</p>
+
+                    <!-- Hiển thị trạng thái sự kiện (Nếu đã hết vé hoặc có vé) -->
+                    {% if su_kien.so_luong_ve > 0 %}
+                        <a href="{% url 'register_event' su_kien.id %}" class="btn-register">Đăng ký tham gia</a>
+                    {% else %}
+                        <p class="no-available">Sự kiện đã hết vé!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}
+
+{% block extra_js %}
+    <script src="{% static 'app/js/event_detail.js' %}"></script>
+{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'app/css/event_detail.css' %}">
+{% endblock %}

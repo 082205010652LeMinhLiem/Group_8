@@ -1,0 +1,50 @@
+/* event_detail.css */
+
+/* Đặt nền của phần thông tin sự kiện */
+.event-detail-container {
+    background-color: #f7f7f7;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Làm nổi bật tiêu đề sự kiện */
+.event-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4f868c;
+}
+
+/* Làm đẹp các thông tin của sự kiện */
+.event-info {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.event-info strong {
+    color: #4f868c;
+}
+
+.event-info p {
+    margin: 10px 0;
+}
+
+/* Nút đăng ký tham gia */
+.btn-register {
+    background-color: #4f868c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-register:hover {
+    background-color: #3e6b7d;
+}
+
+/* Phần thông báo hết vé */
+.no-available {
+    color: red;
+    font-weight: bold;
+}

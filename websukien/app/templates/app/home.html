@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block banner_slider %}
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        {% for su_kien in su_kiens %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                {% if su_kien.hinh_anh %}
+                    <img src="{{ su_kien.hinh_anh.url }}" class="d-block w-100" alt="{{ su_kien.ten_su_kien }}" height="750">
+                {% else %}
+                    <img src="{% static 'app/images/default.jpg' %}" class="d-block w-100" alt="Default Image" height="750">
+                {% endif %}
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ su_kien.ten_su_kien }}</h5>
+                    <p>{{ su_kien.mo_ta_ngan }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endblock banner_slider %}
+
+<!-- Dải phân cách -->
+<div style="height: 10px; background-color: #4f868c; margin: 30px 0;"></div>
+
+{% block main-content %}
+<div class="container">
+    <div class="row">
+        {% for su_kien in su_kiens %}
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+                {% if su_kien.hinh_anh %}
+                    <img src="{{ su_kien.hinh_anh.url }}" class="card-img-top" alt="{{ su_kien.ten_su_kien }}">
+                {% else %}
+                    <img src="{% static 'app/images/default.jpg' %}" class="card-img-top" alt="Default Image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ su_kien.ten_su_kien }}</h5>
+                    <p class="card-text">{{ su_kien.mo_ta_ngan }}</p>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <!-- Hiển thị giá vé với ký hiệu ₫ -->
+                        <span><strong>{{ su_kien.gia_ve|floatformat:0 }}₫</strong></span>
+                        <a href="{% url 'event_detail' su_kien.id %}" class="btn btn-outline-success">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <!-- Cập nhật liên kết đăng ký tham gia -->
+                    <a href="{% url 'register_event' su_kien.id %}" class="btn btn-outline-secondary">Đăng ký tham gia</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">Hiện không có sự kiện nào.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main-content %}

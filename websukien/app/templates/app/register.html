@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block main-content %}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <form method="post" action="{% url 'register' %}" style="width: 400px; background-color: #f8f9fa; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        {% csrf_token %}
+        <h3 class="text-center mb-4">Đăng ký tài khoản</h3>
+
+        <!-- Hiển thị lỗi nếu có -->
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Trường tên người dùng -->
+        <div class="mb-3">
+            <label for="id_username" class="form-label">Tên người dùng</label>
+            <input type="text" class="form-control" id="id_username" name="username" value="{{ form.username.value }}" placeholder="Nhập tên người dùng" required>
+        </div>
+
+        <!-- Trường email -->
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="id_email" name="email" value="{{ form.email.value }}" placeholder="Nhập email" required>
+        </div>
+
+        <!-- Trường mật khẩu -->
+        <div class="mb-3">
+            <label for="id_password1" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" id="id_password1" name="password1" placeholder="Nhập mật khẩu" required>
+        </div>
+
+        <!-- Trường nhập lại mật khẩu -->
+        <div class="mb-3">
+            <label for="id_password2" class="form-label">Nhập lại mật khẩu</label>
+            <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Nhập lại mật khẩu" required>
+        </div>
+
+        <!-- Nút đăng ký -->
+        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+
+        <!-- Liên kết đăng nhập -->
+        <p class="text-center mt-2">
+            Bạn đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'app/css/register.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'app/js/register.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,47 @@
+/* login.css */
+
+/* Tạo hiệu ứng hover cho các trường input */
+.form-control:focus {
+    border-color: #4f868c;
+    box-shadow: 0 0 5px rgba(79, 134, 140, 0.6);
+}
+
+/* Tùy chỉnh form đăng nhập */
+form {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút đăng nhập */
+button[type="submit"] {
+    background-color: #4f868c;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #396a75;
+}
+
+/* Hiển thị lỗi */
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}

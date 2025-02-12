@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block main-content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Thông tin cá nhân</h2>
+    
+    <!-- Form chỉnh sửa thông tin cá nhân -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Hiển thị form -->
+        <div class="mb-3">
+            <label for="id_avatar" class="form-label">Ảnh đại diện</label>
+            {{ form.avatar }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="id_phone" class="form-label">Số điện thoại</label>
+            {{ form.phone }}
+        </div>
+        
+        <div class="mb-3">
+            <label for="id_bio" class="form-label">Giới thiệu bản thân</label>
+            {{ form.bio }}
+        </div>
+        
+        <!-- Nút Cập nhật -->
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'app/css/profile.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'app/js/profile.js' %}" defer></script>
+{% endblock %}
